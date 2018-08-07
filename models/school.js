@@ -7,14 +7,22 @@ let SchoolSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Team'
   },
-  debates: {
+  debates: [{
       type: Schema.Types.ObjectId,
       ref: 'Debate'
-  },
-  people: {
+  }],
+  students: [{
       type: Schema.Types.ObjectId,
       ref: 'Person'
-  }
+  }],
+  judges: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Person'
+  }],
+  coaches: [{
+      type: Schema.Types.ObjectId,
+      ref:'Person'
+  }]
 })
 
 let School = mongoose.model('School', SchoolSchema);

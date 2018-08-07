@@ -22,153 +22,173 @@ let sampleSchools = [{
                                   /* British */
 const britishPeople = [{
   name: 'Ray Davies',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'George Orwell',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Rod Stewart',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Ronnie Lane',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'George Smiley',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Jim Prideaux',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Vaclav Paris',
-  isJudge: true,
+  role: 'judge',
+  isAvailable: true
+}, {
+  name: 'Alicia Gibson',
+  role: 'coach',
+  email: 'gib@bis-ny.org',
   isAvailable: true
 }]
                             /* Foon */
 const foonPeople = [{
   name: 'Usidore The Blue',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Fi\'ang Yalok',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Zoenen Hoogstandjes',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Gasmueneas Maestar',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Stinson Chapeau',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Toby LeRone',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Sleepy LeBoeuf',
-  isJudge: true,
+  role: 'judge',
+  isAvailable: true
+}, {
+  name: 'Woofie Wilkerson',
+  role: 'coach',
+  email: 'woof@foon.edu',
   isAvailable: true
 }]
                                   /* Nest */
 const nestPeople = [{
   name: 'Pierre Robin',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Doderick Soup',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Raggedy Anne',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Encyclopedia Brown',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Murphy Brown',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Jian Leon',
-  isJudge: false,
+  role: 'student',
   isAvailable: true,
   score: 0
 }, {
   name: 'Franz DerVerf',
-  isJudge: true,
+  role: 'judge',
   isAvailable: true
+}, {
+  name: 'Jordan Morris',
+  role: 'coach',
+  email: 'jmorris@foon.edu',
+  isAvailable: false
 }]
                               /* Brearley */
 const brearleyPeople = [{
-name: 'Greg Stritch',
-isJudge: false,
-isAvailable: true,
-score: 0
+  name: 'Greg Stritch',
+  role: 'student',
+  isAvailable: true,
+  score: 0
 }, {
-name: 'Frank Kuntz',
-isJudge: false,
-isAvailable: true,
-score: 0
+  name: 'Frank Kuntz',
+  role: 'student',
+  isAvailable: true,
+  score: 0
 }, {
-name: 'Yossarian The Assyrian',
-isJudge: false,
-isAvailable: true,
-score: 0
+  name: 'Yossarian The Assyrian',
+  role: 'student',
+  isAvailable: true,
+  score: 0
 }, {
-name: 'Orr Swede',
-isJudge: false,
-isAvailable: true,
-score: 0
+  name: 'Orr Swede',
+  role: 'student',
+  isAvailable: true,
+  score: 0
 }, {
-name: 'Nately Garfunkel',
-isJudge: false,
-isAvailable: true,
-score: 0
+  name: 'Nately Garfunkel',
+  role: 'student',
+  isAvailable: true,
+  score: 0
 }, {
-name: 'Alan Arkansas',
-isJudge: false,
-isAvailable: true,
-score: 0
+  name: 'Alan Arkansas',
+  role: 'student',
+  isAvailable: true,
+  score: 0
 }, {
-name: 'Clifford York',
-isJudge: true,
-isAvailable: true
+  name: 'Clifford York',
+  role: 'judge',
+  isAvailable: true
+}, {
+  name: 'Monkton Combes',
+  role: 'coach',
+  email: 'mcombes@brearley.edu',
+  isAvailable: false
 }]
 
 // Seed Functions
 
 
 // Create all schools
-let createSchools = (schools) => {
+const createSchools = (schools) => {
 
   db.School.create(schools, (err, success) => {
     if (err) { console.log(err) }
@@ -177,7 +197,7 @@ let createSchools = (schools) => {
 }
 
 //Find specific school by name
-let findSchool = (schoolName) => {
+const findSchool = (schoolName) => {
   db.School.findOne({ name: schoolName }, (err, school) => {
     if (err) { console.log(err) }
     console.log(`found ${school}`)
@@ -185,7 +205,7 @@ let findSchool = (schoolName) => {
   })
 }
 //Team assignment functions
-let assignTeams = (teamName1, teamName2, school, personArray) => {
+const assignTeams = (teamName1, teamName2, school, personArray) => {
   let team1 = new db.Team({
     name: teamName1,
     wins: 0,
@@ -217,14 +237,42 @@ let assignTeams = (teamName1, teamName2, school, personArray) => {
 
 //School assignment function
 
-let assignSchool = (personArray, school) => {
+const assignSchool = (personArray, school) => {
   personArray.forEach( person => {
     person.affiliation = school
     console.log(`${person.name} assigned to ${school.name}`)
   })
 }
 
-let seedDatabase = () => {
+//Assign people to schools
+const reverseAssignSchool = function (databasePeople, school) {
+
+  for (let i = 0; i < databasePeople.length; i++) {
+    let person = databasePeople[i];
+    switch (person.role) {
+      case 'student':
+        school.students.push(person);
+        break;
+      case 'judge':
+        school.judges.push(person);
+        break;
+      case 'coach':
+        school.coaches.push(person)
+      default: break;
+    }
+  }
+  school.save(function (err, success) {
+    if (err) { console.log(err) }
+
+    console.log(`made reverse assignments`)
+    console.log(success.students.length)
+    console.log(success.judges.length)
+    console.log(success.coaches.length)
+  })
+}
+
+
+const seedDatabase = () => {
 
   db.School.remove({}, (err, succ) => {
     if (err) { console.log(err) }
@@ -267,21 +315,25 @@ let seedDatabase = () => {
               //create people
               db.Person.create(britishPeople, (err, newBrits) => {
                 if (err) { console.log(err) }
+                reverseAssignSchool(newBrits, britishSchool);
                 newBrits.forEach( brit => {
                   console.log(`created ${brit.name}`)
                 })
                 db.Person.create(foonPeople, (err, newFoons) => {
                   if (err) { console.log(err) }
+                  reverseAssignSchool(newFoons, foonSchool);
                   newFoons.forEach( foony => {
                     console.log(`created ${foony.name}`)
                   })
                   db.Person.create(nestPeople, (err, newNest) => {
                     if (err) { console.log(err) }
+                    reverseAssignSchool(newNest, nestSchool);
                     newNest.forEach( nester => {
                       console.log(`created ${nester.name}`)
                     })
                     db.Person.create(brearleyPeople, (err, newBrearleys) => {
                       if (err) { console.log(err) }
+                      reverseAssignSchool(newBrearleys, brearleySchool);
                       newBrearleys.forEach( brearlier => {
                         console.log(`created ${brearlier.name}`)
                         process.exit();

@@ -4,7 +4,11 @@ let Schema = mongoose.Schema
 
 let PersonSchema = new Schema({
   name: String,
-  isJudge: Boolean,
+  role: {
+      type: String,
+      enum: ['student', 'judge', 'coach']
+  },
+  email: String,
   isAvailable: Boolean,
   team: {
        type: Schema.Types.ObjectId,
