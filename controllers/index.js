@@ -3,5 +3,6 @@ module.exports = {
   school: require('./schoolController'),
   debate: require('./debateController'),
   team: require('./teamController'),
-  person: require('./personController')
+  person: require('./personController'),
+  user: require('./userController')
 }

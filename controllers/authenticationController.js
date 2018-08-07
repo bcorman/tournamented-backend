@@ -1,7 +1,7 @@
 const jwt = require('jwt-simple')
 const User = require('../models/user')
 const db = require('../models')
-
+const secret = require('../config')
 // Auth functions modeled after General Assembly WDI-Labs demonstration.
 // Link to repo: https://git.generalassemb.ly/SF-WDI/react-router-v4-redux-auth
 
@@ -28,10 +28,8 @@ exports.signIn = function (req, res, next) {
 }
 
 exports.signUp = function (req, res, next) {
-    const username = req.body.username
-    const email = req.body.email
-    const password = req.body.password
-
+    let email = req.body.email
+    let password = req.body.password
   // See if a user with the given email exists
     if (!email || !password) {
         return res.status(422).send({error: 'You must provide email and password'})
@@ -42,11 +40,10 @@ exports.signUp = function (req, res, next) {
             return next(err) }
         if (existingUser) { return res.status(422).send({error: 'Email is in use'}) }
 
-        const user = new User({ name, username, email, password, isAdmin })
-
+        let user = new User({ email, password })
         user.save( function (err) {
             if (err) { return next(err) }
-            res.json({token: tokenForUser(user), user, faculty })
+            res.json({token: tokenForUser(user), user })
         })
     })
 }
