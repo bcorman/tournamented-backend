@@ -1,14 +1,14 @@
 const jwt = require('jwt-simple')
 const User = require('../models/user')
 const db = require('../models')
-const secret = require('../config')
+const config = require('../config')
 // Auth functions modeled after General Assembly WDI-Labs demonstration.
 // Link to repo: https://git.generalassemb.ly/SF-WDI/react-router-v4-redux-auth
 
 
 const tokenForUser = (user) => {
     const timestamp = new Date().getTime();
-    return jwt.encode({sub: user.id, iat: timestamp}, process.env.KEY)
+    return jwt.encode({sub: user.id, iat: timestamp}, config.secret)
 }
 
 exports.signIn = function (req, res, next) {
@@ -23,7 +23,7 @@ exports.signIn = function (req, res, next) {
           res.sendStatus(500)
           console.log('user not found')
       }
-      res.send({token: tokenForUser(req.user)})
+      res.send({token: tokenForUser(req.user), user })
   })
 }
 
