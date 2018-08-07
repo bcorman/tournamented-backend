@@ -1,4 +1,4 @@
-// express | postgres | sequelize | morgan | cors | body-parser 
+// express | postgres | sequelize | morgan | cors | body-parser
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -38,5 +38,6 @@ console.log('Server listening on: ', port);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/tournamented'
+    process.env.MONGODB_URI || 'mongodb://localhost:27017/tournamented',
+    {useNewUrlParser: true }
 );
