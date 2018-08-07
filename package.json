@@ -1,0 +1,27 @@
+{
+  "name": "tournamented-backend",
+  "version": "1.0.0",
+  "description": "backend for tournamented debate application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcorman/tournamented-backend.git"
+  },
+  "author": "Ben Corman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bcorman/tournamented-backend/issues"
+  },
+  "homepage": "https://github.com/bcorman/tournamented-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "node": "^10.8.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0"
+  }
+}
