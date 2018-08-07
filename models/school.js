@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let SchoolSchema = new Schema({
-  name: String
+  name: { type: String, unique: true },
   teams: {
       type: Schema.Types.ObjectId,
       ref: 'Team'

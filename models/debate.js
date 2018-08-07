@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let debateSchema = new Schema({
+let DebateSchema = new Schema({
     teams: {
         prop: {
             type: Schema.Types.ObjectId,
