@@ -34,14 +34,13 @@ exports.signUp = function (req, res, next) {
     if (!email || !password) {
         return res.status(422).send({error: 'You must provide email and password'})
     }
-
     User.findOne({email: email}, function (err, existingUser) {
-        if (err) {
-            return next(err) }
+        if (err) { return next(err) }
         if (existingUser) { return res.status(422).send({error: 'Email is in use'}) }
 
+        console.log('hit signUp')
         let user = new User({ email, password })
-        user.save( function (err) {
+        user.save( function (err, success) {
             if (err) { return next(err) }
             res.json({token: tokenForUser(user), user })
         })

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
 let Schema = mongoose.Schema;
-let bcrypt = require('bcrypt-nodejs');
 
 let UserSchema = new Schema({
     email: { type: String, unique: true },
@@ -8,7 +8,8 @@ let UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function (next) {
-    const user = this;
+    let user = this;
+
     bcrypt.genSalt(10, function (err, salt) {
         if (err) { return next(err) };
 
@@ -28,6 +29,6 @@ UserSchema.methods.comparePassword = function (candidatePassword, callback) {
     });
 };
 
-const User = mongoose.model('User', UserSchema)
+let User = mongoose.model('User', UserSchema)
 
 module.exports = User
