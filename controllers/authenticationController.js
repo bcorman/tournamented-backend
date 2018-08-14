@@ -38,7 +38,6 @@ exports.signUp = function (req, res, next) {
         if (err) { return next(err) }
         if (existingUser) { return res.status(422).send({error: 'Email is in use'}) }
 
-        console.log('hit signUp')
         let user = new User({ email, password })
         user.save( function (err, success) {
             if (err) { return next(err) }
