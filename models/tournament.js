@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let TournamentSchema = new Schema({
+  name: String,
+  location: String,
+  date: { type: Date, default: Date.now },
+  length: Number,
   schools: [{
     type: Schema.Types.ObjectId,
     ref: 'School'
