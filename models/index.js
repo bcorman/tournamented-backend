@@ -7,5 +7,6 @@ module.exports = {
     School: require('./school.js'),
     Debate: require('./debate.js'),
     Team: require('./team.js'),
-    Person: require('./person.js')
+    Person: require('./person.js'),
+    Tournament: require('./tournament.js')
 }
