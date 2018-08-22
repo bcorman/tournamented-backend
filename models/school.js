@@ -23,7 +23,7 @@ let SchoolSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'Person'
   }]
-})
+});
 
 let School = mongoose.model('School', SchoolSchema);
 

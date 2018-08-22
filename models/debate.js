@@ -17,8 +17,8 @@ let DebateSchema = new Schema({
         ref: 'Person'
       },
     location: String
-  })
+  });
 
-  const Debate = mongoose.model('Debate', DebateSchema)
+  const Debate = mongoose.model('Debate', DebateSchema);
 
-  module.exports = Debate
+  module.exports = Debate;

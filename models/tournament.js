@@ -30,8 +30,8 @@ let TournamentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Debate'
   }]
-})
+});
 
-const TournamentSchema = mongoose.model('Tournament', TournamentSchema)
+const Tournament = mongoose.model('Tournament', TournamentSchema);
 
-module.exports = Tournament
+module.exports = Tournament;

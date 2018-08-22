@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-let Schema = mongoose.Schema
+let Schema = mongoose.Schema;
 
 let PersonSchema = new Schema({
   name: String,
@@ -19,8 +19,8 @@ let PersonSchema = new Schema({
        type: Schema.Types.ObjectId,
        ref: 'School'
      }
-})
+});
 
-const Person = mongoose.model('Person', PersonSchema)
+const Person = mongoose.model('Person', PersonSchema);
 
-module.exports = Person
+module.exports = Person;

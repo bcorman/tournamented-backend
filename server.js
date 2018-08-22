@@ -22,17 +22,17 @@ const port = process.env.PORT || 3090;
 const server = http.createServer(app);
 
 server.listen(port, function () {
-    console.log('Server connected')
+    console.log('Server connected');
 });
 
 console.log('Server listening on: ', port);
 
 app.use(function (err, req, res, next) {
-    console.log(err.stack)
-    res.status(500).send('What have you done...')
+    console.log(err.stack);
+    res.status(500).send('What have you done...');
 });
 app.use(function (req, res, next) {
-    res.status(404).send('Not found...')
+    res.status(404).send('Not found...');
 });
 // Database Initialization
 

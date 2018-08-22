@@ -12,8 +12,8 @@ let TeamSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'School'
     }
-})
+});
 
-const Team = mongoose.model('Team', TeamSchema)
+const Team = mongoose.model('Team', TeamSchema);
 
-module.exports = Team
+module.exports = Team;
