@@ -1,7 +1,7 @@
 const db = require('./models');
 const mongoose = require('mongoose');
 
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost:27017/tournamented", { useNewUrlParser: true } );
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/tournamented', { useNewUrlParser: true } );
 
 //Seed Data
 // 4 schools with 6 students and 1 judge each - sufficient for 8 total debate teams/ 4 total debates.
@@ -191,7 +191,7 @@ const brearleyPeople = [{
 const createSchools = (schools) => {
 
   db.School.create(schools, (err, success) => {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
     console.log(`created schools`);
   });
 };
@@ -199,7 +199,7 @@ const createSchools = (schools) => {
 //Find specific school by name
 const findSchool = (schoolName) => {
   db.School.findOne({ name: schoolName }, (err, school) => {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
     console.log(`found ${school}`);
     return school;
   });
@@ -225,11 +225,11 @@ const assignTeams = (teamName1, teamName2, school, personArray) => {
   }
 
   team1.save((err, succ) => {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
     console.log(`saved ${teamName1}`);
   });
   team2.save((err, succ) => {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
     console.log(`saved ${teamName2}`);
   });
   console.log(`${school.name} teams saved`);
@@ -259,10 +259,10 @@ const reverseAssignSchool = function (databasePeople, school) {
       case 'coach':
         school.coaches.push(person);
       default: break;
-    };
-  };
+    }
+  }
   school.save(function (err, success) {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
 
     console.log(`made reverse assignments`);
     console.log(success.students.length);
@@ -275,23 +275,23 @@ const reverseAssignSchool = function (databasePeople, school) {
 const seedDatabase = () => {
 
   db.School.remove({}, (err, succ) => {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
     console.log(`removed all schools`);
 
       db.Team.remove({}, (err, succ) => {
-        if (err) { console.log(err) };
+        if (err) { console.log(err) }
         console.log(`removed all teams`);
 
         db.Debate.remove({}, (err, succ) => {
-          if (err) { console.log(err) };
+          if (err) { console.log(err) }
           console.log(`removed all debates`);
 
           db.Person.remove({}, (err, succ) => {
-            if (err) { console.log(err) };
+            if (err) { console.log(err) }
             console.log(`removed all people`);
 
             db.School.create(sampleSchools, (err, success) => {
-              if (err) { console.log(err) };
+              if (err) { console.log(err) }
               console.log(`created schools`);
 
               let britishSchool = success[0];
