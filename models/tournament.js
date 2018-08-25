@@ -29,6 +29,10 @@ let TournamentSchema = new Schema({
   debates: [{
     type: Schema.Types.ObjectId,
     ref: 'Debate'
+  }],
+  users: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }]
 });
 

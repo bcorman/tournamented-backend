@@ -1,7 +1,7 @@
 const db = require('./models');
 const mongoose = require('mongoose');
 
-mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/tournamented', { useNewUrlParser: true } );
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/debate-club', { useNewUrlParser: true } );
 
 //Seed Data
 // 4 schools with 6 students and 1 judge each - sufficient for 8 total debate teams/ 4 total debates.
