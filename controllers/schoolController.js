@@ -1,13 +1,7 @@
-// tell server to look at index.js
-const express = require('express')
-
-const bodyParser = require('body-parser')
-
-//Get express
-const app = express()
-
-//Tell controller to look at database
-const db = require('../models/')
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const db = require('../models/');
 
 /*CRUD Functions
 
@@ -27,16 +21,18 @@ module.exports = {
       })
   },
   create: (req, res) => {
+    console.log(req.body)
     db.School.findOne(req.body, (err, found) => {
       if (err) { console.log(err) }
+      if (found) {
+        res.send('School name must be unique')
+      }
       if (found === null) {
         db.School.create(req.body, (err, newSchool) => {
             newSchool.name = req.body
             if (err) { console.log(err) }
-            console.log(req.body)
             console.log(newSchool)
             res.json(newSchool)
-
         })
       }
     })

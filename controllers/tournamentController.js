@@ -17,7 +17,13 @@ module.exports = {
           console.log(err);
           req.sendStatus(500);
         }
-        res.json(success);
+        const tourData = {
+          name: success.name,
+          location: success.location,
+          length: success.length,
+          date: success.date
+        }
+        res.json(tourData);
       })
     })
     // console.log(req)
