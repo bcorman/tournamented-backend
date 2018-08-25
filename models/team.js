@@ -5,15 +5,15 @@ let TeamSchema = new Schema({
   name: {type: String, unique: true },
   wins: Number,
   debates: [{
-       type: Schema.Types.ObjectId,
-       ref: 'Debate'
-     }],
+    type: Schema.Types.ObjectId,
+    ref: 'Debate'
+  }],
   school: {
-      type: Schema.Types.ObjectId,
-      ref: 'School'
-    }
-})
+    type: Schema.Types.ObjectId,
+    ref: 'School'
+  }
+});
 
-const Team = mongoose.model('Team', TeamSchema)
+const Team = mongoose.model('Team', TeamSchema);
 
-module.exports = Team
+module.exports = Team;

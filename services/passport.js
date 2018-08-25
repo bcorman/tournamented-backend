@@ -14,7 +14,7 @@ const localLogin = new LocalStrategy(localOptions, function (email, password, do
   // otherwise call done with false
   User.findOne({email: email}, function (err, user) {
     if (err) {
-      return done(err)
+      return done(err);
     }
     if (!user) {
       return done(null, false);

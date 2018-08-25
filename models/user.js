@@ -3,32 +3,32 @@ const bcrypt = require('bcrypt-nodejs');
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    email: { type: String, unique: true },
-    password: String
+  email: { type: String, unique: true },
+  password: String
 });
 
 UserSchema.pre('save', function (next) {
-    let user = this;
+  let user = this;
 
-    bcrypt.genSalt(10, function (err, salt) {
-        if (err) { return next(err) };
+  bcrypt.genSalt(10, function (err, salt) {
+    if (err) { return next(err) }
 
-        bcrypt.hash(user.password, salt, null, function (err, hash) {
-            if (err) { return next(err) };
+    bcrypt.hash(user.password, salt, null, function (err, hash) {
+      if (err) { return next(err) }
 
-            user.password = hash;
-            next();
-        });
+      user.password = hash;
+      next();
     });
+  });
 });
 
 UserSchema.methods.comparePassword = function (candidatePassword, callback) {
-    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-        if (err) { return callback(err) }
-        callback(null, isMatch);
-    });
+  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+    if (err) { return callback(err) }
+    callback(null, isMatch);
+  });
 };
 
-let User = mongoose.model('User', UserSchema)
+let User = mongoose.model('User', UserSchema);
 
-module.exports = User
+module.exports = User;

@@ -4,5 +4,6 @@ module.exports = {
   debate: require('./debateController'),
   team: require('./teamController'),
   person: require('./personController'),
-  user: require('./userController')
-}
+  user: require('./userController'),
+  tournament: require('./tournamentController')
+};
