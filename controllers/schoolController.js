@@ -16,12 +16,24 @@ module.exports = {
     //get all schools
     db.School.find({}, (err, schools) => {
         if (err) { console.log(err) }
-        console.log(`Schools Delivered`)
-        res.json(schools)
+        console.log(`Schools Delivered`);
+        res.json(schools);
       })
   },
+  indexByTour: (req, res) => {
+    //get all schools for specific tournament
+    const id = req.params.tournamentid;
+    console.log('indexByTour hit')
+    db.Tournament.findById(id, (err, tournament) => {
+      if (err) {
+        res.sendStatus(500);
+        console.log(err);
+      }
+      const schools = tournament.schools;
+      res.json(schools);
+    })
+  }
   create: (req, res) => {
-    console.log(req.body);
     const id = req.body.id;
     const school = req.body.school;
 
