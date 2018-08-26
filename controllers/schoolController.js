@@ -24,15 +24,18 @@ module.exports = {
     //get all schools for specific tournament
     const id = req.params.tournamentid;
     console.log('indexByTour hit')
-    db.Tournament.findById(id, (err, tournament) => {
-      if (err) {
-        res.sendStatus(500);
-        console.log(err);
-      }
-      const schools = tournament.schools;
-      res.json(schools);
-    })
-  }
+    db.Tournament.findById(id)
+      .populate('schools')
+      .exec((err, tournament) => {
+       if (err) {
+         res.sendStatus(500);
+         console.log(err);
+       }
+       const schools = tournament.schools;
+       res.json(schools);
+     })
+
+  },
   create: (req, res) => {
     const id = req.body.id;
     const school = req.body.school;
@@ -60,6 +63,7 @@ module.exports = {
           tournament.schools.push(newSchool);
           tournament.save();
           newSchool.save();
+          res.json(newSchool)
         }
       })
     })
