@@ -2,6 +2,16 @@
 const db = require('../models');
 
 module.exports = {
+  show: (req, res) => {
+    console.log('tournament show hit')
+    let id = req.params.id;
+    db.Tournament.findById(id)
+    .populate('*')
+    .exec((err, tournament) => {
+     if (err) {res.sendStatus(500)}
+     res.json(tournament);
+   })
+  },
   create: (req, res) => {
     db.User.findById(req.body.user, (err, user) => {
       if (err) { console.log(err) }
@@ -27,14 +37,6 @@ module.exports = {
         res.json(tourData);
       })
     })
-    // console.log(req)
-    // db.Tournament.create(req.body, (err, newTournament) => {
-    //   if (err) {
-    //     res.sendStatus(500);
-    //   }
-    //   console.log(newTournament);
-    //   res.json(newTournament);
-    // })
   },
   delete: (req, res, next) => {
     let id = req.params.id;

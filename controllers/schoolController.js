@@ -32,9 +32,9 @@ module.exports = {
          console.log(err);
        }
        const schools = tournament.schools;
+
        res.json(schools);
      })
-
   },
   create: (req, res) => {
     const id = req.body.id;
@@ -47,15 +47,11 @@ module.exports = {
       }
 
     db.School.findOne({name: school.name}, (err, found) => {
-
       if (err) { console.log(err) }
-
       if (found) {
         res.send('School name must be unique');
       }
-
       if (found === null) {
-
           let newSchool = new db.School({
             name: school.name,
             tournaments: [tournament]
@@ -63,7 +59,6 @@ module.exports = {
           tournament.schools.push(newSchool);
           tournament.save();
           newSchool.save();
-          res.json(newSchool)
         }
       })
     })
