@@ -21,29 +21,44 @@ module.exports = {
       })
   },
   create: (req, res) => {
-    console.log(req.body)
-    db.School.findOne(req.body, (err, found) => {
+    console.log(req.body);
+    const id = req.body.id;
+    const school = req.body.school;
+
+    db.Tournament.findById(id, (err, tournament) => {
+      if (err) {
+        res.sendStatus(500);
+        console.log(err);
+      }
+
+    db.School.findOne({name: school.name}, (err, found) => {
+
       if (err) { console.log(err) }
+
       if (found) {
-        res.send('School name must be unique')
+        res.send('School name must be unique');
       }
+
       if (found === null) {
-        db.School.create(req.body, (err, newSchool) => {
-            newSchool.name = req.body
-            if (err) { console.log(err) }
-            console.log(newSchool)
-            res.json(newSchool)
-        })
-      }
+
+          let newSchool = new db.School({
+            name: school.name,
+            tournaments: [tournament]
+          })
+          tournament.schools.push(newSchool);
+          tournament.save();
+          newSchool.save();
+        }
+      })
     })
   },
   show: (req, res) => {
     //get single school
-    let id = req.params.id
+    let id = req.params.id;
     db.School.findById(id, (err, school) => {
         if (err) { console.log(err) }
         console.log(`Single School Delivered`)
-        res.json(school)
+        res.json(school);
     })
   },
   destroy: (req, res) => {
@@ -52,17 +67,17 @@ module.exports = {
     let id = req.params.id
     db.School.findByIdAndRemove(id, (err, success) => {
       if (err) { console.log(err) }
-      console.log(`School removed`)
-      res.json(success)
+      console.log(`School removed`);
+      res.json(success);
     })
   },
   update: (req, res) => {
-    let id = req.params.id
-    let newInfo = req.body
+    let id = req.params.id;
+    let newInfo = req.body;
     db.School.findByIdAndUpdate(id, newInfo, (err, success) => {
       if (err) { console.log(err) }
-      console.log(success)
-      res.json(success)
+      console.log(success);
+      res.json(success);
     })
   }
 }

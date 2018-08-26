@@ -336,7 +336,6 @@ const seedDatabase = () => {
                       reverseAssignSchool(newBrearleys, brearleySchool);
                       newBrearleys.forEach( brearlier => {
                         console.log(`created ${brearlier.name}`);
-                        process.exit();
                       });
                     });
                   });

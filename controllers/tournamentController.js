@@ -21,7 +21,8 @@ module.exports = {
           name: success.name,
           location: success.location,
           length: success.length,
-          date: success.date
+          date: success.date,
+          _id: success._id
         }
         res.json(tourData);
       })

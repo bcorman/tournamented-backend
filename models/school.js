@@ -22,6 +22,10 @@ let SchoolSchema = new Schema({
   coaches: [{
     type: Schema.Types.ObjectId,
     ref:'Person'
+  }],
+  tournaments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Tournament'
   }]
 });
 
