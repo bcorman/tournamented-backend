@@ -71,10 +71,10 @@ const addStudent = (res, studentName, schoolID) => {
         } else {
           let newStudent = new db.Person({
             name: studentName,
-            role: 'student',
-            affiliation: school
+            role: 'student'
           })
           school.students.push(newStudent);
+          newStudent.affiliation = school;
           newStudent.save();
           school.save();
           res.json(newStudent);
