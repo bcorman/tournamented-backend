@@ -77,7 +77,7 @@ const addStudent = (res, studentName, schoolID) => {
           newStudent.affiliation = school;
           newStudent.save();
           school.save();
-          res.json(newStudent);
+          res.json({school});
         }
       }
     })
