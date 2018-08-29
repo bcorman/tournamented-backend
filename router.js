@@ -10,6 +10,7 @@ module.exports = (app) => {
   app.post('/setup/init', controller.tournament.create);
   app.post('/setup/school/create', controller.school.create);
   app.get('/setup/school/:tournamentid', controller.school.indexByTour);
+  app.get('/school/:id', controller.school.show);
   app.get('/:tournamentid', controller.tournament.show);
   app.delete('/tournament/delete/:id', controller.tournament.delete);
 };

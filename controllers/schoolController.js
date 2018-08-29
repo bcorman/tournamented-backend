@@ -18,7 +18,7 @@ module.exports = {
       if (err) { console.log(err) }
       console.log(`Schools Delivered`);
       res.json(schools);
-    })
+    });
   },
   indexByTour: (req, res) => {
     //get all schools for specific tournament
