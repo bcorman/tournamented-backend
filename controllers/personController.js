@@ -39,11 +39,11 @@ module.exports = {
         res.json(person)
       })
   },
-  destroy: (req, res) => {
+  delete: (req, res) => {
     let id = req.params.id
-    db.Person.findByIdAndRemove(id, (err, success) => {
+    db.Person.findByIdAndRemove(id, (err) => {
       if (err) { res.sendStatus(500) }
-      res.json(success)
+      res.sendStatus(200)
     })
   },
   update: (req, res) => {

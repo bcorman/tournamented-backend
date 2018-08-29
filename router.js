@@ -14,5 +14,5 @@ module.exports = (app) => {
   app.get('/school/:id', controller.school.show);
   app.get('/:tournamentid', controller.tournament.show);
   app.delete('/tournament/delete/:id', controller.tournament.delete);
-  app.delete('/person/delete/:id', controller.person.delete);
+  app.get('/person/delete/:id', controller.person.delete);
 };
