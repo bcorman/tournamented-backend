@@ -59,7 +59,6 @@ module.exports = {
 //Helper Functions
 
 const addStudent = (res, studentName, schoolID) => {
-  let studentExists;
   db.School.findById(schoolID)
     .populate('students')
     .exec((err, school) => {
@@ -79,7 +78,6 @@ const addStudent = (res, studentName, schoolID) => {
           newStudent.save();
           school.save();
           res.json(newStudent);
-          console.log(newStudent)
         }
       }
     })
