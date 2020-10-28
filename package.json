@@ -16,5 +16,17 @@
     "url": "https://github.com/bcorman/tournamented-backend/issues"
   },
   "homepage": "https://github.com/bcorman/tournamented-backend#readme",
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "mongoose": "^5.10.11",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.1.2"
+  }
 }

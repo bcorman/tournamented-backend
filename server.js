@@ -1,43 +1,34 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const http = require('http');
-const cors = require('cors');
-const helmet = require('helmet');
-const db = require('./models/index.js');
-const router = require('./router');
-const mongoose = require('mongoose');
+rerimport express from 'express';
+import { urlencoded, json } from 'body-parser';
+import morgan from 'morgan';
+import { createServer } from 'http';
+import cors from 'cors';
+import helmet from 'helmet';
+import router from './router';
+import { connect } from 'mongoose';
 const app = express();
-
-
 
 app.use(cors());
 app.use(morgan('combined'));
 app.use(helmet());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({type: '*/*'}));
+app.use(urlencoded({ extended: false }));
+app.use(json({ type: '*/*' }));
 
 router(app);
 const port = process.env.PORT || 3090;
-const server = http.createServer(app);
+const server = createServer(app);
 
-server.listen(port, function () {
-  console.log('Server connected');
-});
+server.listen(port, () => console.log('Server connected'));
 
-console.log('Server listening on: ', port);
+console.log(`Server listening on: ${port}`);
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res) => {
   console.log(err.stack);
   res.status(500).send('What have you done...');
 });
-app.use(function (req, res, next) {
-  res.status(404).send('Not found...');
-});
-// Database Initialization
 
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost:27017/debate-club',
-  {useNewUrlParser: true }
-);
+app.use((req, res) => res.status(404).send('Not found...'));
+
+connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/debate-club', {
+  useNewUrlParser: true,
+});
